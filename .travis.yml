@@ -1,0 +1,17 @@
+language: node
+node:
+  - '6'
+
+sudo: required
+
+services:
+  - docker
+
+script:
+ - export REPO=clutteredcode/polymer-cli-alpine
+ - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+ - docker build -t $REPO:$TAG .
+
+after_success:
+  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+  - docker push $REPO
