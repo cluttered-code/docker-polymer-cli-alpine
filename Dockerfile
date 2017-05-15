@@ -6,7 +6,7 @@ LABEL maintainer "David Clutter <cluttered.code@gmail.com>"
 RUN apk update \
   && apk upgrade \
 #   && apk add --no-cache --virtual .build-deps git \
-  $$ apk --update git
+  $$ apk --update git \
   && npm install -g polymer-cli bower \
 #   && apk del .build-deps \
 #   && rm -rf /var/cache/apk/*
